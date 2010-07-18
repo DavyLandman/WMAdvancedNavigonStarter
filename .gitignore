@@ -1,0 +1,12 @@
+*/bin/*
+*.swp
+*.bak
+*/bin/*
+*/obj/*
+bin
+obj
+*.cab
+*.log
+*.inf
+*.user
+*.suo
