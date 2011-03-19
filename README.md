@@ -9,7 +9,8 @@ having a shortcut with custom icon.
 I created this simple .NET Compact Framework application to do the following
 things:
 
-  - Disable the memory consuming HTC Touch additions (manila)
+  - Disable the memory consuming HTC Touch additions (Manila)
+  - Disable Titanium home screen for Windows Mobile 6.5 (CHome)
   - Rotate the screen to have Navigon to support Reality View (primary reason
 	for choosing Navigon over TomTom)
   - Edit config file to switch between internal and external GPS
