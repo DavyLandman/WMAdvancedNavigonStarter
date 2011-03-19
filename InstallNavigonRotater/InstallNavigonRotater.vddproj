@@ -164,6 +164,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_66D415CBED5F43FF97BDC37A30BCBC11"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_68CEA632FB5A48A4BF3E4F5DDF6A9098"
         "OwnerKey" = "8:_1A56B933CAF93FB66AEE0CC575055F04"
         "MsmSig" = "8:_UNDEFINED"
@@ -454,6 +460,24 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{BA458234-9B71-4F46-8107-E91156377184}:_66D415CBED5F43FF97BDC37A30BCBC11"
+            {
+            "SourcePath" = "8:..\\StartNavigonAndRotate\\largeicon.png"
+            "TargetName" = "8:AppIcon.png"
+            "Tag" = "8:"
+            "Folder" = "8:_4F7104E6E6B3499EA2DE74CC79E89430"
+            "Condition" = "8:"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "Register" = "3:0"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{E4F2F62A-3940-4BF5-A031-F7FA98CAAFFA}:_68CEA632FB5A48A4BF3E4F5DDF6A9098"
             {
             "AssemblyIsInGAC" = "11:FALSE"
@@ -557,7 +581,7 @@
         {
             "{605BE39E-5046-48BD-AEC0-63C3A46626D5}:_E307112696D948F3BA2A69E61FACAB85"
             {
-            "SourcePath" = "8:..\\StartNavigonAndRotate\\obj\\Release\\StartNavigonAndRotate.exe"
+            "SourcePath" = "8:..\\StartNavigonAndRotate\\obj\\Debug\\StartNavigonAndRotate.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4F7104E6E6B3499EA2DE74CC79E89430"
@@ -588,6 +612,68 @@
             {
                 "Keys"
                 {
+                    "{B1EBC968-6B66-4532-A885-748B79AF4477}:_EE3008F05D9E44D18E818E6A5963536C"
+                    {
+                    "Name" = "8:Security"
+                    "Condition" = "8:"
+                        "Keys"
+                        {
+                            "{B1EBC968-6B66-4532-A885-748B79AF4477}:_7BDE2C8CF6DD43A7A39EB60D8B5FE6AD"
+                            {
+                            "Name" = "8:Shell"
+                            "Condition" = "8:"
+                                "Keys"
+                                {
+                                    "{B1EBC968-6B66-4532-A885-748B79AF4477}:_E4D19AECD96B482D9727DA92694BAC56"
+                                    {
+                                    "Name" = "8:StartInfo"
+                                    "Condition" = "8:"
+                                        "Keys"
+                                        {
+                                            "{B1EBC968-6B66-4532-A885-748B79AF4477}:_749D36401CFD471498F7EC535D4B8DF8"
+                                            {
+                                            "Name" = "8:Start"
+                                            "Condition" = "8:"
+                                                "Keys"
+                                                {
+                                                    "{B1EBC968-6B66-4532-A885-748B79AF4477}:_920724521A0A4D8E83FFB9C591866205"
+                                                    {
+                                                    "Name" = "8:Navigon Rotated.lnk"
+                                                    "Condition" = "8:"
+                                                        "Keys"
+                                                        {
+                                                        }
+                                                        "Values"
+                                                        {
+                                                            "{C3684F64-58E2-4092-8E3C-D7483080DE5A}:_4851C641210842B3A8527D0E0B6D2E7E"
+                                                            {
+                                                            "Name" = "8:Icon"
+                                                            "Condition" = "8:"
+                                                            "ValueTypes" = "3:1"
+                                                            "Value" = "8:%InstallDir%\\AppIcon.png"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                "Values"
+                                                {
+                                                }
+                                            }
+                                        }
+                                        "Values"
+                                        {
+                                        }
+                                    }
+                                }
+                                "Values"
+                                {
+                                }
+                            }
+                        }
+                        "Values"
+                        {
+                        }
+                    }
                 }
             }
             "HKCU"
