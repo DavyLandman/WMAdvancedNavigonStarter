@@ -9,6 +9,7 @@ using Microsoft.Win32;
 using System.Xml;
 using System.IO;
 using System.Windows.Forms;
+using System.Threading;
 
 
 namespace StartNavigonAndRotate
@@ -22,7 +23,14 @@ namespace StartNavigonAndRotate
 			Boolean blueToothEnabled = GetBluetoothStatus() != RadioMode.Off;
 			try
 			{
-				StopManila();
+				if (isManilaPresent())
+				{
+					StopManila();
+				}
+				if (isTitaniumPresent())
+				{
+					StopTitanium();
+				}
 				if (!blueToothEnabled && useExternalGPS)
 				{
 					SetBluetoothStatus(RadioMode.Connectable);
@@ -43,7 +51,14 @@ namespace StartNavigonAndRotate
 				{
 					SystemSettings.ScreenOrientation = ScreenOrientation.Angle0;
 				}
-				StartManila();
+				if (isManilaPresent())
+				{
+					StartManila();
+				}
+				if (isTitaniumPresent())
+				{
+					StartTitanium();
+				}
 				if (!blueToothEnabled && useExternalGPS)
 				{
 					SetBluetoothStatus(RadioMode.Off);
@@ -153,19 +168,85 @@ namespace StartNavigonAndRotate
 		[DllImport("coredll.dll")]
 		private static extern int PostMessage(IntPtr hWnd, uint msg, int wParam, int lParam);
 
+		private static String titaniumLocation = @"Software\Microsoft\Today\Items\" + "\"Windows Default\"";
+
+		private static Boolean isTitaniumPresent()
+		{
+			try
+			{
+				RegistryKey key = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\CHome", false);
+				return true;
+			}
+			catch { return false; }
+
+		}
+
+		private static Boolean titaniumWasRunning = false;
+		private static void StopTitanium()
+		{
+			try
+			{
+				RegistryKey key = Registry.LocalMachine.OpenSubKey(titaniumLocation, true);
+				titaniumWasRunning = ((int)key.GetValue("Enabled")) == 1;
+				key.SetValue("Enabled", 0);
+
+				PostMessage((IntPtr)HWND_BROADCAST, WM_WININICHANGE, 0xF2, 0);
+			}
+			catch { }
+		}
+		private static void StartTitanium()
+		{
+			try
+			{
+				RegistryKey key = Registry.LocalMachine.OpenSubKey(titaniumLocation, true);
+				if (titaniumWasRunning)
+				{
+					key.SetValue("Enabled", 1);
+				}
+
+				PostMessage((IntPtr)HWND_BROADCAST, WM_WININICHANGE, 0xF2, 0);
+			}
+			catch { }
+		}
+
+
+		private static Boolean isManilaPresent()
+		{
+			try
+			{
+				RegistryKey key = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Today\Items\HTC Sense", false);
+				return true;
+			}
+			catch { return false; }
+		}
+
+
+		private static Boolean manilaWasRunning = false;
 		private static void StopManila()
 		{
-			RegistryKey key = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Today\Items\HTC Sense", true);
-			key.SetValue("Enabled", 0);
+			try
+			{
+				RegistryKey key = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Today\Items\HTC Sense", true);
+				manilaWasRunning = ((int)key.GetValue("Enabled")) == 1;
+				key.SetValue("Enabled", 0);
 
-			PostMessage((IntPtr)HWND_BROADCAST, WM_WININICHANGE, 0xF2, 0);
+				PostMessage((IntPtr)HWND_BROADCAST, WM_WININICHANGE, 0xF2, 0);
+			}
+			catch { }
 		}
 		private static void StartManila()
 		{
-			RegistryKey key = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Today\Items\HTC Sense", true);
-			key.SetValue("Enabled", 1);
+			try
+			{
+				RegistryKey key = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Today\Items\HTC Sense", true);
+				if (manilaWasRunning)
+				{
+					key.SetValue("Enabled", 1);
+				}
 
-			PostMessage((IntPtr)HWND_BROADCAST, WM_WININICHANGE, 0xF2, 0);
+				PostMessage((IntPtr)HWND_BROADCAST, WM_WININICHANGE, 0xF2, 0);
+			}
+			catch { }
 		}
 
 	}
